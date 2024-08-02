@@ -84,7 +84,7 @@ const logger = winston.createLogger({
 async function main() {
     // Get the current directory where the script is being executed
     const currentDir = getCurrentDirectory();
-    const BuildDir = "C:/Users/Ducan/Documents/Git/SPT-Backend/project/user/mods/";
+    const BuildDir = "C:/Users/Ducan/Documents/Git/Build/user/mods/";
 
     // Defining at this scope because we need to use it in the finally block.
     let projectDir;

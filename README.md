@@ -1,24 +1,21 @@
-# Fika - SPT.Server Mod
+# ⚠️ Unofficial Repository Notice ⚠️
 
-[![Discord](https://img.shields.io/discord/1202292159366037545?style=plastic&logo=discord&logoColor=FFFFFF&label=Fika%20Discord
-)](https://discord.gg/project-fika)
-[![Downloads](https://img.shields.io/github/downloads/project-fika/Fika-Server/total?style=plastic&logo=github)](https://github.com/project-fika/Fika-Server/releases/latest)
-![Size](https://img.shields.io/github/languages/code-size/project-fika/Fika-Server?style=plastic&logo=github)
-![Issues](https://img.shields.io/github/issues/project-fika/Fika-Server?style=plastic&logo=github)
-[![License](https://img.shields.io/badge/CC--BY--NC--SA--4.0-blue?style=plastic&logo=creativecommons&logoColor=FFFFFF&label=License)](LICENSE)
+⚠️ This repository is not maintained by FIKA or SPT. ⚠️  
+⚠️ There will be absolutely no support for this repository and its contents. YOU ARE ON YOUR OWN! ⚠️  
+⚠️ DO NOT TRY TO CONTACT THE ORIGINAL PROGRAMMERS/CONTRIBUTORS IF YOU NEED SUPPORT WHILE USING THIS CODE. ⚠️
 
-Server-side changes to make multiplayer work.
+If you are looking for the official builds of these projects, please visit:
 
-## Requirements
+- [SPT](https://sp-tarkov.com/)
+- [FIKA](https://github.com/project-fika)
 
-- [Node 20.x](https://nodejs.org/en/download)
+# Contributors
 
-## Build
+- Fika Team
+- SPT Team
 
-| **Tool**   | **Action**                     |
-| ---------- | ------------------------------ |
-| Powershell | `npm run build`                |
-| VSCode     | `Terminal > Run Build Task...` |
+Thank you to everyone for these awesome projects!
+
 
 ## Licenses
 

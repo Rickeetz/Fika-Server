@@ -84,7 +84,7 @@ const logger = winston.createLogger({
 async function main() {
     // Get the current directory where the script is being executed
     const currentDir = getCurrentDirectory();
-
+    const BuildDir = "../Build/user/mods/";
     // Defining at this scope because we need to use it in the finally block.
     let projectDir;
 
@@ -97,50 +97,24 @@ async function main() {
 
         // Create a descriptive name for the mod package.
         const projectName = createProjectName(packageJson);
-        logger.log("success", `Project name created: ${projectName}`);
 
         // Remove the old distribution directory and create a fresh one.
-        const distDir = await removeOldDistDirectory(currentDir);
-        logger.log("info", "Distribution directory successfully cleaned.");
+        const BuildDir = await removeOldDistDirectory(currentDir);
 
         // Create a temporary working directory to perform the build operations.
         projectDir = await createTemporaryDirectoryWithProjectName(projectName);
-        logger.log("success", "Temporary working directory successfully created.");
-        logger.log("info", projectDir);
 
         // Copy files to the temporary directory while respecting the .buildignore rules.
-        logger.log("info", "Beginning copy operation using .buildignore file...");
         await copyFiles(currentDir, projectDir, buildIgnorePatterns);
-        logger.log("success", "Files successfully copied to temporary directory.");
 
-        // Create a zip archive of the project files.
-        logger.log("info", "Beginning folder compression...");
-        const zipFilePath = path.join(path.dirname(projectDir), `${projectName}.zip`);
-        await createZipFile(projectDir, zipFilePath, "user/mods/" + projectName);
-        logger.log("success", "Archive successfully created.");
-        logger.log("info", zipFilePath);
-
-        // Move the zip file inside of the project directory, within the temporary working directory.
-        const zipFileInProjectDir = path.join(projectDir, `${projectName}.zip`);
-        await fs.move(zipFilePath, zipFileInProjectDir);
-        logger.log("success", "Archive successfully moved.");
-        logger.log("info", zipFileInProjectDir);
-
-        // Move the temporary directory into the distribution directory.
-        await fs.move(projectDir, distDir);
+        await fs.move(projectDir, BuildDir);
         logger.log("success", "Temporary directory successfully moved into project distribution directory.");
 
         // Log the success message. Write out the path to the mod package.
-        logger.log("success", "------------------------------------");
-        logger.log("success", "Build script completed successfully!");
-        logger.log("success", "Your mod package has been created in the 'dist' directory:");
-        logger.log("success", `/${path.relative(process.cwd(), path.join(distDir, `${projectName}.zip`))}`);
-        logger.log("success", "------------------------------------");
-        if (!verbose) {
-            logger.log("success", "To see a detailed build log, use `npm run buildinfo`.");
-            logger.log("success", "------------------------------------");
+            logger.log("success", "-----------COMPLETED------------");
         }
-    } catch (err) {
+
+    catch (err) {
         // If any of the file operations fail, log the error.
         logger.log("error", "An error occurred: " + err);
     } finally {
@@ -237,7 +211,7 @@ function createProjectName(packageJson) {
  * @returns {Promise<string>} A promise that resolves to the absolute path to the distribution directory.
  */
 async function removeOldDistDirectory(projectDir) {
-    const distPath = path.join(projectDir, "dist");
+    const distPath = path.join(projectDir, "fika-server");
     await fs.remove(distPath);
     return distPath;
 }

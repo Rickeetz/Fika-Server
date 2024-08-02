@@ -84,6 +84,7 @@ const logger = winston.createLogger({
 async function main() {
     // Get the current directory where the script is being executed
     const currentDir = getCurrentDirectory();
+    const BuildDir = "C:/Users/Ducan/Documents/Git/SPT-Backend/project/user/mods/";
 
     // Defining at this scope because we need to use it in the finally block.
     let projectDir;
@@ -100,7 +101,7 @@ async function main() {
         logger.log("success", `Project name created: ${projectName}`);
 
         // Remove the old distribution directory and create a fresh one.
-        const distDir = await removeOldDistDirectory(currentDir);
+        const distDir = await removeOldDistDirectory(BuildDir);
         logger.log("info", "Distribution directory successfully cleaned.");
 
         // Create a temporary working directory to perform the build operations.
@@ -114,7 +115,7 @@ async function main() {
         logger.log("success", "Files successfully copied to temporary directory.");
 
         // Create a zip archive of the project files.
-        logger.log("info", "Beginning folder compression...");
+        /*logger.log("info", "Beginning folder compression...");
         const zipFilePath = path.join(path.dirname(projectDir), `${projectName}.zip`);
         await createZipFile(projectDir, zipFilePath, "user/mods/" + projectName);
         logger.log("success", "Archive successfully created.");
@@ -124,7 +125,7 @@ async function main() {
         const zipFileInProjectDir = path.join(projectDir, `${projectName}.zip`);
         await fs.move(zipFilePath, zipFileInProjectDir);
         logger.log("success", "Archive successfully moved.");
-        logger.log("info", zipFileInProjectDir);
+        logger.log("info", zipFileInProjectDir);*/
 
         // Move the temporary directory into the distribution directory.
         await fs.move(projectDir, distDir);
@@ -237,7 +238,7 @@ function createProjectName(packageJson) {
  * @returns {Promise<string>} A promise that resolves to the absolute path to the distribution directory.
  */
 async function removeOldDistDirectory(projectDir) {
-    const distPath = path.join(projectDir, "dist");
+    const distPath = path.join(projectDir, "fika-server");
     await fs.remove(distPath);
     return distPath;
 }
